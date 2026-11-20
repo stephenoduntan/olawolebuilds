@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-canvas-base: #08090b;
+  --color-canvas-raised: #0e1115;
+  --color-canvas-elevated: #151920;
+  --color-canvas-card: #101319;
+  
+  --color-hairline: rgba(255, 255, 255, 0.08);
+  --color-hairline-bright: rgba(255, 255, 255, 0.16);
+  --color-hairline-subtle: rgba(255, 255, 255, 0.04);
+  
+  --color-accent: #ff5c00;
+  --color-accent-subtle: rgba(255, 92, 0, 0.12);
+  --color-accent-emerald: #10b981;
+
+  --color-text-heading: #f3f4f6;
+  --color-text-body: #d1d5db;
+  --color-text-muted: #8b949e;
+  --color-text-subtle: #525a66;
+
+  color-scheme: dark;
+}
+
+/* Fluid Typography Scalers */
+.fluid-hero {
+  font-size: clamp(2.25rem, 5.5vw + 1rem, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.fluid-h2 {
+  font-size: clamp(1.75rem, 3.2vw + 0.75rem, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.fluid-h3 {
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.85rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.fluid-body-lg {
+  font-size: clamp(1.0625rem, 0.8vw + 0.85rem, 1.25rem);
+  line-height: 1.6;
+}
+
+/* Crisp Hairline Border Grid Systems */
+.hairline-border {
+  border: 1px solid var(--color-hairline);
+}
+
+.hairline-border-t {
+  border-top: 1px solid var(--color-hairline);
+}
+
+.hairline-border-b {
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.hairline-border-r {
+  border-right: 1px solid var(--color-hairline);
+}
+
+.hairline-border-l {
+  border-left: 1px solid var(--color-hairline);
+}
+
+/* Noise & Texture Grid Overlay */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+/* Focus Visibility for Accessible Keyboard Navigation */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-canvas-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f242d;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2e3642;
+}
+
+/* Reduced Motion Safety Rules */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
