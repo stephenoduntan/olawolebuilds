@@ -22,6 +22,8 @@ export interface CaseStudy {
   accent: string;
 }
 
+export const CANONICAL_AVAILABILITY = "Available for Select Contract & Full-Time Roles";
+
 export const caseStudies: CaseStudy[] = [
   {
     id: 'sahara-centre',
@@ -62,7 +64,7 @@ export const caseStudies: CaseStudy[] = [
     frontEndExecution: [
       'Engineered modular custom UI components with strict semantic HTML landmarks (<main>, <article>, <aside>).',
       'Implemented progressive document streaming and asynchronous PDF payload chunking for low-bandwidth resilience.',
-      'Added keyboard shortcuts (`/` to focus research index, `Esc` to reset filters, arrow keys to cycle results).',
+      'Added keyboard shortcuts (/ to focus research index, Esc to reset filters, arrow keys to cycle results).',
       'Applied GSAP micro-reveals with layout stability checks to eliminate Cumulative Layout Shift (CLS: 0.00).'
     ],
     tradeoffs: [
@@ -224,7 +226,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: 'Adaptive Data Density',
-        description: 'Built a dual-mode interface allowing users to toggle between "Simple Swap" and "Advanced Terminal" without losing current order context.'
+        description: 'Built a dual-mode interface allowing users to toggle between Simple Swap and Advanced Terminal without losing current order context.'
       }
     ],
     frontEndExecution: [
@@ -246,5 +248,113 @@ export const caseStudies: CaseStudy[] = [
     liveUrl: 'https://geken.network',
     previewImage: 'https://framerusercontent.com/images/gI9ImUwEFip2axRkcDuZdXExggY.png',
     accent: '#8b5cf6'
+  },
+  {
+    id: 'fitness-den',
+    slug: 'fitness-den',
+    index: '05',
+    title: 'Fitness Den',
+    client: 'Fitness Den Community & Wellness',
+    year: '2024',
+    category: 'Community & Wellness Mobile Application',
+    role: 'Lead UX/UI Designer & Prototyping Specialist',
+    summary: 'A community fitness application designed to empower users to create personalized workout regimens, log daily progression metrics, and engage in peer accountability challenges.',
+    metrics: [
+      { label: 'Routine Completion', value: '+48%' },
+      { label: 'Weekly Active Users', value: '12k+' },
+      { label: 'Log Friction', value: '-60%' },
+      { label: 'User Satisfaction', value: '4.9/5' }
+    ],
+    problem: 'Fitness and wellness apps frequently suffer from steep dropout rates within the first 14 days due to complicated meal/exercise logging routines and lack of community reinforcement.',
+    friction: [
+      'Logging fatigue: Users spent over 90 seconds attempting to record simple weight and repetition sets.',
+      'Isolated progression: Lack of social accountability mechanics reduced long-term motivation.',
+      'Cluttered dashboards: Mixing nutrition, cardio, and weightlifting into a single screen overwhelmed beginner gym-goers.'
+    ],
+    architecture: [
+      {
+        title: 'Micro-Action Habit Rail',
+        description: 'Engineered a one-tap quick-log interface enabling users to record workout milestones in under 12 seconds.'
+      },
+      {
+        title: 'Peer Accountability Circles',
+        description: 'Structured community squads where friends celebrate streak milestones without toxic leaderboard competition.'
+      },
+      {
+        title: 'Adaptive Routine Generator',
+        description: 'Designed a dynamic questionnaire that personalizes 4-week workout splits based on available equipment and time constraints.'
+      }
+    ],
+    frontEndExecution: [
+      'Built reactive mobile gesture mechanics with tactile GSAP swipe-to-complete interactions.',
+      'Implemented optimistic offline data persistence using IndexedDB with automatic cloud sync upon reconnection.',
+      'Engineered smooth SVG circular progress rings with customizable calorie and heart rate rings.'
+    ],
+    tradeoffs: [
+      'Prioritized fast tactile logging buttons over detailed macro-nutrient scientific calculators on primary mobile views.',
+      'Kept social feed strictly chronological to avoid algorithmic dopamine loops.'
+    ],
+    outcomes: [
+      '48% increase in 30-day workout routine completion rates.',
+      'Average daily workout logging time reduced from 90 seconds to under 18 seconds.',
+      'Onboarded 12,000+ active fitness enthusiasts during the initial community rollout.'
+    ],
+    stack: ['React', 'Tailwind CSS', 'GSAP', 'Mobile UX', 'Design Systems', 'Micro-Interactions'],
+    previewImage: 'https://framerusercontent.com/images/QnjPK6SJnUmnw2nSlg67t4a0C8M.png?scale-down-to=1024',
+    accent: '#ef4444'
+  },
+  {
+    id: 'urban-slice',
+    slug: 'urban-slice',
+    index: '06',
+    title: 'Urban Slice',
+    client: 'Urban Slice Hospitality',
+    year: '2024',
+    category: 'Food Logistics & Mobile-First Ordering App',
+    role: 'Product Designer & Front-End Developer',
+    summary: 'A mobile-first on-demand pizza ordering and live delivery tracking application designed to simplify custom pizza builds and provide transparent order fulfillment.',
+    metrics: [
+      { label: 'Checkout Conversion', value: '+39%' },
+      { label: 'Custom Build Time', value: '-45s' },
+      { label: 'Cart Abandonment', value: '-28%' },
+      { label: 'Repeat Orders', value: '2.1x' }
+    ],
+    problem: 'Traditional mobile food ordering interfaces make pizza customization (crust selection, half-and-half toppings, dietary filters) confusing, leading to high cart abandonment at checkout.',
+    friction: [
+      'Complex customizer UI: Standard checkboxes failed to visually communicate half-and-half topping splits, causing customer dissatisfaction upon delivery.',
+      'Delivery opacity: Customers contacted customer support repeatedly to check dispatch status due to vague delivery estimates.',
+      'Slow mobile checkout: Cluttered forms on small screens caused high drop-off during peak dinner hours.'
+    ],
+    architecture: [
+      {
+        title: 'Interactive Visual Pizza Builder',
+        description: 'Created an intuitive visual split-canvas allowing customers to drag toppings onto whole, left, or right halves with instant price reflection.'
+      },
+      {
+        title: 'Live Kitchen-to-Doorstep Tracking',
+        description: 'Architected a four-stage visual fulfillment rail: Dough Prep, Woodfire Bake, Quality Check, and Rider En Route with real-time GPS telemetry.'
+      },
+      {
+        title: 'Express 2-Tap Reorder System',
+        description: 'Saved previous order combinations to customer favorites, enabling repeat orders in under 15 seconds.'
+      }
+    ],
+    frontEndExecution: [
+      'Developed interactive SVG canvas with smooth GSAP topping placement transitions.',
+      'Implemented accessible bottom-sheet modal drawers optimized for single-thumb mobile ergonomics.',
+      'Integrated real-time cart state with instant price calculations and Apple Pay / Google Pay express buttons.'
+    ],
+    tradeoffs: [
+      'Restricted deep marketing popups during the checkout flow to maintain frictionless payment completion.',
+      'Optimized image assets with WebP and AVIF formats to ensure sub-second menu loading over mobile cellular networks.'
+    ],
+    outcomes: [
+      '39% lift in mobile checkout conversion rate within the first two months.',
+      'Average pizza customization time cut from 2 minutes down to 45 seconds.',
+      'Customer support delivery inquiry calls reduced by 54% thanks to transparent live order milestones.'
+    ],
+    stack: ['React', 'Tailwind CSS', 'GSAP', 'Mobile UX', 'Cart Architecture', 'Design Systems'],
+    previewImage: 'https://framerusercontent.com/images/lspCTgxOUEP53qFvxB0Qwc0VWE.png?scale-down-to=1024',
+    accent: '#f97316'
   }
 ];

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Copy, Check, ArrowUpRight, Calendar, Mail, Send, Sparkles } from 'lucide-react';
 import { useLagosTime } from '../hooks/useLagosTime';
+import { CANONICAL_AVAILABILITY } from '../data/caseStudies';
 
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -88,7 +89,7 @@ export const ContactSection: React.FC = () => {
                 </button>
               </div>
 
-              {/* Direct Cal.com booking link */}
+              {/* Direct Booking CTA to Cal.com */}
               <a
                 href="https://cal.com/oocreativ"
                 target="_blank"
@@ -96,20 +97,24 @@ export const ContactSection: React.FC = () => {
                 className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-canvas-elevated hover:bg-canvas-raised hairline-border text-xs font-mono text-canvas-heading hover:text-white transition-all shadow-sm"
               >
                 <Calendar className="w-4 h-4 text-accent" />
-                <span>Schedule a 30-Min Discovery Call (Cal.com)</span>
+                <span>Book a Discovery Call (https://cal.com/oocreativ)</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-canvas-muted" />
               </a>
             </div>
 
-            {/* Status & Time Detail */}
+            {/* Status & Time Detail with Canonical Availability */}
             <div className="p-4 rounded-xl bg-canvas-card/60 hairline-border text-xs font-mono space-y-2">
               <div className="flex items-center justify-between text-canvas-muted">
                 <span>Location Station</span>
                 <span className="text-canvas-heading">Lagos, NG (6.52° N, 3.37° E)</span>
               </div>
               <div className="flex items-center justify-between text-canvas-muted">
-                <span>Station Clock</span>
-                <span className="text-accent-emerald">{lagosTime || 'GMT+1'}</span>
+                <span>Lagos Station Clock</span>
+                <span className="text-accent-emerald">{lagosTime.formatted}</span>
+              </div>
+              <div className="flex items-center justify-between text-canvas-muted">
+                <span>Current Status</span>
+                <span className="text-accent font-medium">{CANONICAL_AVAILABILITY}</span>
               </div>
               <div className="flex items-center justify-between text-canvas-muted">
                 <span>Response Window</span>

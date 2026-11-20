@@ -1,6 +1,7 @@
 import React from 'react';
 import { Compass, CheckCircle2, Shield, HeartHandshake, Eye, Sparkles } from 'lucide-react';
 import { useLagosTime } from '../hooks/useLagosTime';
+import { CANONICAL_AVAILABILITY } from '../data/caseStudies';
 
 export const AboutSection: React.FC = () => {
   const lagosTime = useLagosTime();
@@ -75,12 +76,12 @@ export const AboutSection: React.FC = () => {
                 <span className="text-canvas-heading">Lagos, Nigeria (WAT)</span>
               </div>
               <div className="flex items-center justify-between text-canvas-muted">
-                <span>Local Station Time</span>
-                <span className="text-accent-emerald">{lagosTime || 'Active Station'}</span>
+                <span>Lagos Station Clock</span>
+                <span className="text-accent-emerald">{lagosTime.formatted}</span>
               </div>
               <div className="flex items-center justify-between text-canvas-muted">
-                <span>Working Philosophy</span>
-                <span className="text-canvas-heading">Clarity, Systems, Usability</span>
+                <span>Availability Status</span>
+                <span className="text-accent font-medium">{CANONICAL_AVAILABILITY}</span>
               </div>
             </div>
           </div>

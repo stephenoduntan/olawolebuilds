@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import { MousePointer, ChevronDown, Sparkles, Sliders, Activity, Layers, ArrowRight, Check } from 'lucide-react';
+import { MousePointer, ChevronDown, Sparkles, Sliders, Layers, ArrowRight, Check } from 'lucide-react';
 import { explorations } from '../data/explorations';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
@@ -71,28 +71,16 @@ export const MotionLab: React.FC = () => {
   // 4. Token Density Switcher
   const [tokenDensity, setTokenDensity] = useState<'compact' | 'comfortable' | 'spacious'>('comfortable');
 
-  // 5. Kinetic Scrubber State
-  const [scrubberValue, setScrubberValue] = useState(65);
-  const metricNumRef = useRef<HTMLSpanElement>(null);
-
-  const handleScrubberChange = (val: number) => {
-    setScrubberValue(val);
-    if (!prefersReducedMotion && metricNumRef.current) {
-      gsap.fromTo(
-        metricNumRef.current,
-        { scale: 1.08, color: '#ff5c00' },
-        { scale: 1, color: '#f3f4f6', duration: 0.3, ease: 'power2.out' }
-      );
-    }
-  };
-
   return (
     <section
-      id="lab"
+      id="playground"
       ref={containerRef}
-      className="py-24 sm:py-32 hairline-border-b bg-canvas-base relative"
-      aria-label="Interactive UI and Motion Lab"
+      className="py-24 sm:py-32 hairline-border-b bg-canvas-base relative scroll-mt-12"
+      aria-label="Playground and Interactive Motion Lab"
     >
+      {/* Anchor alias for #lab */}
+      <div id="lab" className="absolute -top-12 left-0 pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -100,16 +88,17 @@ export const MotionLab: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="font-mono text-xs text-accent tracking-widest uppercase">
-                // Interactive UI & Motion Lab
+                // Playground & Interaction Lab
               </span>
               <span className="h-px w-12 bg-accent/40" />
             </div>
             <h2 className="fluid-h2 font-display font-bold text-canvas-heading tracking-tight">
-              Component & Motion Mechanics
+              Interactive Component & Motion Mechanics
             </h2>
           </div>
           <p className="text-canvas-muted text-sm max-w-md leading-relaxed">
-            Live interactive micro-interactions exploring specific ergonomic problems, layout physics, and token architectures. Touch, scrub, and inspect.
+            Focused React + GSAP micro-interactions exploring ergonomic friction, layout mechanics, 
+            and design tokens. Every exploration pairs an active playground with its behavioral rationale.
           </p>
         </div>
 
@@ -137,12 +126,12 @@ export const MotionLab: React.FC = () => {
 
             {/* Interactive Stage */}
             <div className="h-44 rounded-xl bg-canvas-elevated/70 hairline-border flex items-center justify-center relative overflow-hidden mb-6 p-4">
-              <div className="absolute inset-0 bg-dot-pattern opacity-25 pointer-events-none" />
               <button
                 ref={magneticBtnRef}
                 onMouseMove={handleMagneticMove}
                 onMouseLeave={handleMagneticLeave}
                 className="relative px-6 py-3 rounded-full bg-canvas-base hairline-border hover:border-accent text-canvas-heading text-xs font-mono font-medium shadow-xl cursor-pointer flex items-center gap-2"
+                aria-label="Interactive magnetic button study"
               >
                 <span ref={magneticTextRef} className="flex items-center gap-2 pointer-events-none">
                   <span className="w-2 h-2 rounded-full bg-accent animate-ping" />
@@ -194,6 +183,7 @@ export const MotionLab: React.FC = () => {
                 <button
                   onClick={() => setAccordionOpen(!accordionOpen)}
                   className="w-full px-4 py-3 text-left flex items-center justify-between text-xs font-mono text-canvas-heading hover:bg-canvas-card/80 transition-colors"
+                  aria-expanded={accordionOpen}
                 >
                   <span className="flex items-center gap-2">
                     <Layers className="w-3.5 h-3.5 text-accent" />
@@ -289,7 +279,7 @@ export const MotionLab: React.FC = () => {
                           ? 'bg-accent text-white border-accent shadow-lg shadow-accent/25'
                           : 'bg-canvas-card text-canvas-muted hover:text-canvas-heading'
                       }`}
-                      aria-label={label}
+                      aria-label={`Tool dock item ${label}`}
                     >
                       {label.substring(0, 2).toUpperCase()}
                     </button>

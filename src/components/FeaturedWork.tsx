@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight, Layers, CheckCircle2, ChevronRight, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Layers, ChevronRight, ExternalLink } from 'lucide-react';
 import { caseStudies, CaseStudy } from '../data/caseStudies';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
@@ -44,7 +44,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({ onSelectCaseStudy })
       id="work"
       ref={sectionRef}
       className="py-24 sm:py-32 hairline-border-b bg-canvas-base"
-      aria-label="Featured Case Studies"
+      aria-label="Featured Case Studies and Systems"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -53,17 +53,17 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({ onSelectCaseStudy })
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="font-mono text-xs text-accent tracking-widest uppercase">
-                // Index of Selected Work
+                // Index of Selected Work & Case Studies
               </span>
               <span className="h-px w-12 bg-accent/40" />
             </div>
             <h2 className="fluid-h2 font-display font-bold text-canvas-heading tracking-tight">
-              Evidence-Led Case Studies
+              Evidence-Led Product Case Studies
             </h2>
           </div>
           <p className="text-canvas-muted text-sm max-w-md leading-relaxed">
-            Every case study details the core problem, user and operational friction, structural decisions, 
-            technical trade-offs, and production front-end implementation.
+            Every case study articulates the core operational friction, information architecture decisions, 
+            design token governance, and production front-end implementation.
           </p>
         </div>
 
@@ -72,7 +72,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({ onSelectCaseStudy })
           {caseStudies.map((project) => (
             <article
               key={project.id}
-              className="work-card group relative rounded-2xl bg-canvas-card hairline-border hover:border-hairline-bright transition-all duration-300 overflow-hidden"
+              className="work-card group relative rounded-2xl bg-canvas-card hairline-border hover:border-hairline-bright transition-all duration-300 overflow-hidden shadow-sm hover:shadow-xl"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
                 
@@ -104,12 +104,12 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({ onSelectCaseStudy })
                       <span>{project.role}</span>
                     </p>
 
-                    {/* Problem & Solution Summary */}
+                    {/* Problem & Solution Context */}
                     <p className="text-canvas-body text-sm leading-relaxed mb-6">
                       {project.summary}
                     </p>
 
-                    {/* Key Metrics Strip */}
+                    {/* Quantifiable Outcomes / Metrics Strip */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-canvas-elevated/70 hairline-border mb-6">
                       {project.metrics.map((metric, idx) => (
                         <div key={idx} className="flex flex-col">
@@ -161,31 +161,29 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({ onSelectCaseStudy })
 
                 </div>
 
-                {/* Right Visual / Architecture Preview */}
+                {/* Right Visual / Architecture Preview with Accessible Alt Text */}
                 <div
                   onClick={() => onSelectCaseStudy(project)}
                   className="lg:col-span-5 bg-canvas-elevated relative min-h-[280px] lg:min-h-full cursor-pointer overflow-hidden border-t lg:border-t-0 lg:border-l border-hairline group-hover:bg-canvas-raised transition-colors flex items-center justify-center p-6"
                 >
                   <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
                   
-                  {/* Image with subtle hover zoom */}
+                  {/* Clean Visual Frame */}
                   <div className="relative w-full h-full max-h-[380px] rounded-lg overflow-hidden hairline-border shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.02]">
                     <img
                       src={project.previewImage}
-                      alt={`${project.title} interface architecture`}
+                      alt={`${project.title} — ${project.category} user interface architecture and component layout`}
                       className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity"
                       loading="lazy"
-                      onError={(e) => {
-                        // fallback visual preview if image fails
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
                     />
                     
-                    {/* Hover Overlay Hint */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-canvas-base/90 via-transparent to-transparent flex items-end p-4">
-                      <div className="inline-flex items-center gap-1.5 text-xs font-mono text-white/90 bg-canvas-card/80 backdrop-blur-sm px-3 py-1.5 rounded-md hairline-border">
-                        <span>Click to view UX architecture</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-accent" />
+                    {/* Informative Architectural Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-canvas-base/95 via-canvas-base/20 to-transparent flex items-end p-4">
+                      <div className="w-full flex items-center justify-between text-xs font-mono text-white/90 bg-canvas-card/85 backdrop-blur-md px-3 py-2 rounded-md hairline-border">
+                        <span className="truncate pr-2">Case Study {project.index}: {project.title}</span>
+                        <span className="inline-flex items-center gap-1 text-accent shrink-0">
+                          Inspect UX <ArrowUpRight className="w-3.5 h-3.5" />
+                        </span>
                       </div>
                     </div>
                   </div>

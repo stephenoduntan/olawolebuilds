@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import { ArrowDown, ArrowUpRight, Compass, Terminal, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Compass, Calendar, Terminal } from 'lucide-react';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 import { useLagosTime } from '../hooks/useLagosTime';
+import { CANONICAL_AVAILABILITY } from '../data/caseStudies';
 
 interface HeroProps {
   onOpenInquiry: () => void;
@@ -56,15 +57,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
       className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden hairline-border-b bg-gradient-to-b from-canvas-base via-canvas-base to-canvas-raised/40"
       aria-label="Introduction and positioning"
     >
-      {/* Background Subtle Spatial Grid */}
+      {/* Background Subtle Spatial Grid (No Blocking Screen) */}
       <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
-      <div className="absolute top-1/4 -left-48 w-96 h-96 rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-80 h-80 rounded-full bg-accent/3 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-4xl">
           
-          {/* Status & Identity Badge */}
+          {/* Status & Personal Identity Badge */}
           <div className="hero-badge inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-canvas-card hairline-border mb-8 shadow-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
@@ -87,12 +86,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
 
           {/* Subheadline & Bio Positioning */}
           <p className="hero-sub fluid-body-lg text-canvas-muted font-normal max-w-2xl mb-10 leading-relaxed">
-            I bridge UX/UI architecture, rigorous design systems, and production front-end engineering. 
-            Focused on craft, clarity, and usability first—never gimmicky motion that obscures content 
-            or slows down human interaction.
+            I am Olawole Oduntan, a digital product designer and front-end developer based in Lagos, Nigeria. 
+            I bridge UX/UI architecture, systematic design tokens, and production front-end engineering 
+            with high craft, clarity, and usability first.
           </p>
 
-          {/* Action Callouts */}
+          {/* Action Callouts: Work, Cal.com Booking, and Inquiry */}
           <div className="hero-cta-group flex flex-wrap items-center gap-4 mb-16">
             <a
               href="#work"
@@ -102,42 +101,53 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
               <ArrowDown className="w-4 h-4" />
             </a>
 
-            <button
-              onClick={onOpenInquiry}
+            <a
+              href="https://cal.com/oocreativ"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-canvas-card hover:bg-canvas-elevated text-canvas-heading hairline-border hover:border-accent/50 font-medium text-sm transition-all duration-200 active:scale-[0.98]"
             >
+              <Calendar className="w-4 h-4 text-accent" />
+              <span>Book a Call (Cal.com)</span>
+              <ArrowUpRight className="w-4 h-4 text-canvas-muted" />
+            </a>
+
+            <button
+              onClick={onOpenInquiry}
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-accent/10 hover:bg-accent/20 text-accent border border-accent/30 font-medium text-sm transition-all duration-200 active:scale-[0.98]"
+            >
               <span>Start an Engagement</span>
-              <ArrowUpRight className="w-4 h-4 text-accent" />
+              <ArrowUpRight className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Spatial / Metadata Strip */}
+          {/* Spatial / Telemetry Strip */}
           <div className="hero-meta-panel grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-canvas-card/80 backdrop-blur-sm hairline-border text-xs font-mono">
             
             <div className="flex flex-col gap-1 border-r border-hairline/60 pr-2">
-              <span className="text-canvas-subtle uppercase tracking-wider text-[10px]">Location</span>
+              <span className="text-canvas-subtle uppercase tracking-wider text-[10px]">Station Location</span>
               <div className="flex items-center gap-1.5 text-canvas-body font-medium">
                 <Compass className="w-3.5 h-3.5 text-accent" />
-                <span>Lagos, NG</span>
+                <span>Lagos, Nigeria</span>
               </div>
               <span className="text-[10px] text-canvas-muted">6.5244° N, 3.3792° E</span>
             </div>
 
             <div className="flex flex-col gap-1 border-r border-hairline/60 pr-2">
-              <span className="text-canvas-subtle uppercase tracking-wider text-[10px]">Local Clock</span>
+              <span className="text-canvas-subtle uppercase tracking-wider text-[10px]">Lagos Time Indicator</span>
               <span className="text-canvas-body font-medium">
-                {lagosTime || '11:00 AM WAT'}
+                {lagosTime.formatted}
               </span>
-              <span className="text-[10px] text-canvas-muted">GMT+1 (West Africa)</span>
+              <span className="text-[10px] text-canvas-muted">West Africa Time</span>
             </div>
 
             <div className="flex flex-col gap-1 border-r border-hairline/60 pr-2">
-              <span className="text-canvas-subtle uppercase tracking-wider text-[10px]">Availability</span>
+              <span className="text-canvas-subtle uppercase tracking-wider text-[10px]">Availability Status</span>
               <div className="flex items-center gap-1.5 text-accent font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse" />
-                <span>Open for Q1/Q2</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse shrink-0" />
+                <span className="truncate">{CANONICAL_AVAILABILITY}</span>
               </div>
-              <span className="text-[10px] text-canvas-muted">Contract & Senior Roles</span>
+              <span className="text-[10px] text-canvas-muted">Single Active Status</span>
             </div>
 
             <div className="flex flex-col gap-1">
